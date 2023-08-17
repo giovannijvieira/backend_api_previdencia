@@ -1,0 +1,273 @@
+openapi: 3.0.0
+info:
+  version: "1.0"
+  title: "Desafio Técnico Brasilprev Backend"
+  description: "Documentação da API Backend BrasilPrev."
+
+paths:
+  /cadastro/cliente:
+    post:
+      summary: Cadastro de cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '201':
+          description: Cliente criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    example: "d290f1ee-6c54-4b01-90e6-d701748f0851"
+        '400':
+          description: Dados inválidos
+        '500':
+          description: Erro ao processar a requisição
+
+  /cadastro/produto:
+    post:
+      summary: Cadastro de produto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Produto'
+      responses:
+        '201':
+          description: Produto criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    example: "d290f1ee-6c54-4b01-90e6-d701748f0852"
+        '400':
+          description: Dados inválidos
+        '500':
+          description: Erro ao processar a requisição
+
+  /contratacao/plano:
+    post:
+      summary: Contratação de plano
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plano'
+      responses:
+        '201':
+          description: Plano criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    example: "d290f1ee-6c54-4b01-90e6-d701748f0853"
+        '400':
+          description: Dados inválidos
+        '500':
+          description: Erro ao processar a requisição
+
+  /aporte:
+    post:
+      summary: Aporte
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aporte'
+      responses:
+        '201':
+          description: Aporte criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    example: "d290f1ee-6c54-4b01-90e6-d701748f0854"
+        '400':
+          description: Dados inválidos
+        '500':
+          description: Erro ao processar a requisição
+
+  /resgate:
+    post:
+      summary: Resgate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resgate'
+      responses:
+        '201':
+          description: Resgate criado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    example: "d290f1ee-6c54-4b01-90e6-d701748f0855"
+        '400':
+          description: Dados inválidos
+        '500':
+          description: Erro ao processar a requisição
+
+components:
+  schemas:
+
+    Cliente:
+      type: object
+      properties:
+        cpf:
+          type: string
+          description: CPF do cliente
+          example: "12345678901"
+        nome:
+          type: string
+          description: Nome do cliente
+          example: "João da Silva"
+        email:
+          type: string
+          description: E-mail do cliente
+          example: "joao@email.com"
+        dataDeNascimento:
+          type: string
+          format: date-time
+          description: Data de nascimento do cliente
+          example: "1990-01-01T00:00:00Z"
+        genero:
+          type: string
+          description: Gênero do cliente
+          example: "Masculino"
+        rendaMensal:
+          type: number
+          format: float
+          description: Renda mensal do cliente
+          example: 5000.50
+
+    Produto:
+      type: object
+      properties:
+        nome:
+          type: string
+          description: Nome do produto
+          example: "Produto XYZ"
+        susep:
+          type: string
+          description: Susep do produto
+          example: "123456"
+        expiracaoDeVenda:
+          type: string
+          format: date-time
+          description: Data de expiração de venda do produto
+          example: "2025-01-01T00:00:00Z"
+        valorMinimoAporteInicial:
+          type: number
+          format: float
+          description: Valor mínimo de aporte inicial do produto
+          example: 100.00
+        valorMinimoAporte:
+          type: number
+          format: float
+          description: Valor mínimo de aporte do produto
+          example: 50.00
+        idadeDeEntrada:
+          type: integer
+          description: Idade de entrada do produto
+          example: 18
+        idadeDeSaida:
+          type: integer
+          description: Idade de saída do produto
+          example: 65
+        carenciaInicialDeResgate:
+          type: integer
+          description: Carência inicial de resgate do produto (dias)
+          example: 30
+        carenciaEntreResgates:
+          type: integer
+          description: Carência entre resgates do produto (dias)
+          example: 180
+
+    Plano:
+      type: object
+      properties:
+        cliente_id:
+          type: string
+          format: uuid
+          description: ID do cliente associado ao plano
+          example: "cdd394ef-a455-42d4-b656-c60da503ab33"
+        produto_id:
+          type: string
+          format: uuid
+          description: ID do produto associado ao plano
+          example: "6567bf99-7333-4ae1-b3b3-3d9d41c92449"
+        aporte:
+          type: number
+          format: float
+          description: Valor de aporte inicial do plano
+          example: 2100.00
+        dataDaContratacao:
+          type: string
+          format: date-time
+          description: Data da contratação do plano
+          example: "2018-06-05T12:00:00.000Z"
+        idadeDeAposentadoria:
+          type: integer
+          description: Idade de aposentadoria do plano
+          example: 61
+
+    Aporte:
+      type: object
+      properties:
+        idCliente:
+          type: string
+          format: uuid
+          description: ID do cliente associado ao aporte
+          example: "cdd394ef-a455-42d4-b656-c60da503ab33"
+        idPlano:
+          type: string
+          format: uuid
+          description: ID do plano associado ao aporte
+          example: "2095136d-c57e-4fc3-82d4-fb114fe69864"
+        valorAporte:
+          type: number
+          format: float
+          description: Valor do aporte
+          example: 110.00
+
+    Resgate:
+      type: object
+      properties:
+        idPlano:
+          type: string
+          format: uuid
+          description: ID do plano associado ao resgate
+          example: "2095136d-c57e-4fc3-82d4-fb114fe69864"
+        valorResgate:
+          type: number
+          format: float
+          description: Valor do resgate
+          example: 1200.00

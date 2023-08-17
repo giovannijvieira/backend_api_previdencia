@@ -1,0 +1,129 @@
+jose@jose-desktop:~/Desktop/api_previdencia$ curl -X POST -H "Content-Type: application/json" -d '{
+  "cpf": "12312312399",
+  "nome": "Roberto da Costa",
+  "email": "roberto@cliente.com",
+  "dataDeNascimento": "1987-05-19T12:00:00.000Z",
+  "genero": "Masculino",
+  "rendaMensal": 3129.7
+}' http://127.0.0.1:5000/api/cadastro/cliente
+{
+  "id": "cdd394ef-a455-42d4-b656-c60da503ab33"
+}
+
+cliente:ok
+
+jose@jose-desktop:~/Desktop/api_previdencia$ curl -X POST -H "Content-Type: application/json" -d '{
+  "nome": "PrevBrasil Ultra Longo Prazo",
+  "susep": "15414456790201813",
+  "expiracaoDeVenda": "2025-12-31T12:00:00.000Z",
+  "valorMinimoAporteInicial": 1100.0,
+  "valorMinimoAporte": 110.0,
+  "idadeDeEntrada": 19,
+  "idadeDeSaida": 61,
+  "carenciaInicialDeResgate": 65,
+  "carenciaEntreResgates": 32
+}' http://127.0.0.1:5000/api/cadastro/produto
+{
+  "id": "6567bf99-7333-4ae1-b3b3-3d9d41c92449"
+}
+
+produto: ok
+
+jose@jose-desktop:~/Desktop/api_previdencia$  curl -X POST -H "Content-Type: application/json" -d '{
+  "cliente_id": "cdd394ef-a455-42d4-b656-c60da503ab33",
+  "produto_id": "6567bf99-7333-4ae1-b3b3-3d9d41c92449",
+  "aporte": 2100.00,
+  "dataDaContratacao": "2018-06-05T12:00:00.000Z",
+  "idadeDeAposentadoria": 61
+}' http://127.0.0.1:5000/api/contratacao/plano
+{
+  "id": "2095136d-c57e-4fc3-82d4-fb114fe69864"
+}
+
+plano: ok
+
+jose@jose-desktop:~/Desktop/api_previdencia$ curl -X POST -H "Content-Type: application/json" -d '{
+  "idCliente": "cdd394ef-a455-42d4-b656-c60da503ab33",
+  "idPlano": "2095136d-c57e-4fc3-82d4-fb114fe69864",
+  "valorAporte": 110.00
+}' http://127.0.0.1:5000/api/aporte
+{
+  "id": "cdd4cf60-eb21-431c-831f-d0cbfb7ec8ad"
+}
+
+aporte: ok
+
+jose@jose-desktop:~/Desktop/api_previdencia$ curl -X POST -H "Content-Type: application/json" -d '{
+  "idPlano": "2095136d-c57e-4fc3-82d4-fb114fe69864",
+  "valorResgate": 1200.00
+}' http://127.0.0.1:5000/api/resgate
+{
+  "id": "d9194e9f-b628-4491-bb83-22f6303bd002"
+}
+
+resgate: OK
+
+
+
+
+
+
+
+
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "idCliente": "b0183828-a681-443f-92e0-1ccc30f89d0d",
+  "idProduto": "562088b3-efc3-4c6f-a5b2-6aeb934b7c87",
+  "aporte": 2000.00,
+  "dataDaContratacao": "2022-04-05T12:00:00.000Z",
+  "idadeDeAposentadoria": 60
+}' http://127.0.0.1:5000/api/contratacao/plano
+
+
+
+46b561ec7292
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 46b561ec7292
+
+geseccore
+
+db.createUser({
+  user: "gesecroot",
+  pwd: "swmOmsJYqkAN8jzajOAz",
+  roles: [{ role: "readWrite", db: "geseccore" }]
+})
+
+
+docker exec -it e3ac20fdeb67  bash
+
+
+docker rm  1fa3a1710de8
+docker stop 1fa3a1710de8
+
+
+docker rm f30492b3eca4
+docker stop f30492b3eca4
+
+docker rm 157a4dfd1638
+docker stop 157a4dfd1638
+
+docker rm 46b561ec7292
+docker stop 46b561ec7292
+
+
+
+
+CONTAINER ID   IMAGE                             COMMAND                  CREATED       STATUS       PORTS                                           NAMES
+1fa3a1710de8   gesec/new-front:latest            "docker-entrypoint.s…"   5 hours ago   Up 5 hours   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp       gesec-webclient
+f30492b3eca4   gesecsistemas/gesec-recorder:v2   "npm start"              5 hours ago   Up 5 hours   0.0.0.0:8092->8092/tcp, :::8092->8092/tcp       gesec-recorder
+157a4dfd1638   gesecsistemas/gesec-server:v2     "docker-entrypoint.s…"   5 hours ago   Up 5 hours   0.0.0.0:3001->3001/tcp, :::3001->3001/tcp       gesec-server-v2
+46b561ec7292   mongo:3.6-xenial                  "docker-entrypoint.s…"   5 hours ago   Up 5 hours   0.0.0.0:27018->27017/tcp, :::27018->27017/tcp   geseccondo-mongodb
+
+
+ python3 run.py
+
+
+
+
+
+
